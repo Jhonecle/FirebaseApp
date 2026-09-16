@@ -24,3 +24,30 @@ void main() {
    numeros.removeAt(0);
    expect(numeros.contains(0), isFalse);
  });
+test('Testar tamanho', () {
+   expect(numeros.length, 5);
+ });
+ test('Testar vazio e não vazio', () {
+   expect(numeros.isEmpty, isFalse);
+   expect(numeros.isNotEmpty, isTrue);
+ });
+ test('Testar ordenação', () {
+   expect(numeros.reversed.toList(), [6, 5, 4, 3, 1]);
+   expect(numeros, [1, 3, 4, 5, 6]);
+   numeros = numeros.reversed.toList();
+   expect(numeros, [6, 5, 4, 3, 1]);
+   numeros.sort();
+   expect(numeros, [1, 3, 4, 5, 6]);
+ });
+ test('Testar percorrer lista', () {
+   int soma = 0;
+   for (int numero in numeros) {
+     soma += numero;
+   }
+   expect(soma, 19);
+   numeros = numeros.map((numero) => numero * 2).toList();
+   expect(numeros, [2, 6, 8, 10, 12]);
+   numeros = numeros.where((numero) => numero % 3 == 0).toList();
+   expect(numeros, [6, 12]);
+ });
+}
